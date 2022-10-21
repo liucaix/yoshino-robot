@@ -8,7 +8,8 @@
 ### step2 配置
 在config文件夹中新建config.ts,
 配置如下:
-``` export const config = {
+``` 
+export const config = {
     //账号
     account:123456789,
     //密码
