@@ -3,9 +3,12 @@
 
 
 ### step1 安装相关依赖
-`npm install -g typescript`
-`npm install -g ts-node`
+`npm install -g typescript` 
+
+`npm install -g ts-node`  
+
 `npm install`
+
 ### step2 配置
 在config文件夹中新建config.ts,
 配置如下:
