@@ -78,14 +78,14 @@ async function sendMessage(user: Group | Friend) {
     async function inputAndScreenshotTask(tasks: userTask[]) {
         const browser = await puppeteer.launch();
         const page: Page = await browser.newPage();
-        await page.goto(`file://${__dirname}/page/myTask.html`)
+        await page.goto(`file://${__dirname}/../page/myTask.html`)
         for (const value of tasks) {
             const taskDeadline = moment(value.time).fromNow();
             console.log(`addTask("${value.name}","${value.user}","${taskDeadline}","${value.state}")`)
             await page.evaluate(`addTask("${value.name}","${value.user}","${taskDeadline}","${value.state}")`)
         }
         await new Promise((resolve) => setTimeout(resolve, 2000));
-        await page.screenshot({path: `example.png`, fullPage: true});
+        await page.screenshot({path: `${__dirname}/../example.png`, fullPage: true});
         await browser.close();
     }
     updateAllTask(user)
@@ -93,7 +93,7 @@ async function sendMessage(user: Group | Friend) {
     await inputAndScreenshotTask(myReceivers.get(getUserId(user))!);
     const img: ImageElem = {
         type: "image",
-        file: "./example.png",
+        file: `${__dirname}/../example.png`,
     }
     await new Promise((resolve) => setTimeout(resolve, 1000));
     await user.sendMsg(img);
@@ -130,11 +130,14 @@ function updateAllTask(user: Group | Friend) {
         if (updateTaskStateChange(tasks[i])) {
             console.log(tasks[i].state, tasks[i].time)
             createTask(tasks[i], user);
+            console.log(myReceivers);
             writeMapFile(myReceivers);
         }
         //将过期的数据删除
         if (tasks[i].state === "overdue" && moment().diff(moment(tasks[i].time), "seconds") > 60 * 24) {
             tasks.splice(i, 1);
+            console.log(myReceivers);
+
             writeMapFile(myReceivers);
         }
     }

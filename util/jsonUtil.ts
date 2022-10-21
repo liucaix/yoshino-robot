@@ -1,11 +1,10 @@
 const fs = require("fs")
 export function writeMapFile(myMap:Map<any,any>){
-    fs.writeFileSync("./config/data.json",mapToJson(myMap));
+    fs.writeFileSync(`${__dirname}/../config/data.json`,mapToJson(myMap));
 }
 export function readMapFile<K>(){
-    return jsonToMap(fs.readFileSync("./config/data.json").toString()) as Map<string,K>
+    return jsonToMap(fs.readFileSync(`${__dirname}/../config/data.json`).toString()) as Map<string,K>
 }
-
 function strMapToObj<K,V>(strMap: Map<K,V>): object {
     let obj = Object.create(null);
     // @ts-ignore

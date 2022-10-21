@@ -13,7 +13,7 @@ type taskState = "dangerous" | "warning" | "safe" | "overdue"
 export async function sendHelpMessage(user: Group | Friend) {
     const img: ImageElem = {
         type: "image",
-        file: "./help.png",
+        file: `${__dirname}/../help.png`,
     }
     await new Promise((resolve) => setTimeout(resolve, 1000));
     await user.sendMsg(img);
