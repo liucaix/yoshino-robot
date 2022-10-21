@@ -1,0 +1,74 @@
+@font-face {
+    src: url("./myFont.ttf");
+    font-family: "myFont";
+}
+body{
+    width:1200px;
+    min-height: 100vh;
+    background-color: #595858;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: myFont, serif;
+    font-size: 40px;
+    color: #d2cfcf;
+    gap:25px;
+}
+#hitokoto_text{
+    font-size: 40px;
+}
+.taskBox{
+    /*background-color: aliceblue;*/
+    display: flex;
+    flex-direction: row;
+    position:relative;
+    /*justify-content: center;*/
+    align-items: center;
+    width:800px;
+    height:150px;
+    border-radius: 10px;
+    -webkit-box-shadow: 0 0 18px 4px rgba(54,52,54,0.8);
+    -moz-box-shadow: 0 0 18px 4px rgba(54,52,54,0.8);
+    box-shadow: 0 0 18px 4px rgba(54,52,54,0.8);
+}
+.colorBar{
+    width:15px;
+    height:115px;
+    border-radius: 2px;
+    margin-left: 25px;
+    margin-right: 25px;
+}
+.colorBar.dangerous{
+    background-color: #f9875a;
+}
+.colorBar.warning{
+    background-color: #f2dd83;
+}
+.colorBar.safe{
+    background-color: #00fc8b;
+}
+.colorBar.overdue{
+    background-color: aliceblue;
+}
+.contentBox{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+}
+.taskContent{
+    font-size: 65px;
+    color: #ffffff;
+}
+.taskUser{
+    font-size: 30px;
+}
+.taskDeadline{
+    font-size: 30px;
+    position: absolute;
+    right:10px;
+    bottom:10px;
+}
+

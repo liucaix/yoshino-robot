@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+<div id="hitokoto_text"></div>
+<div class="taskBox">
+    <div class="colorBar default"></div>
+    <div class="contentBox">
+        <div class="taskContent">
+            今日校园打卡
+        </div>
+        <div class="taskUser">
+            刘同学
+        </div>
+        <div class="taskDeadline">
+            2h
+        </div>
+    </div>
+</div>
+</body>
+<script src="myTask.js"></script>
+<script>
+    fetch('https://v1.hitokoto.cn/?c=i&max_length=18')
+        .then(response => response.json())
+        .then(data => {
+            const hitokoto = document.getElementById('hitokoto_text')
+            hitokoto.href = 'https://hitokoto.cn/?uuid=' + data.uuid
+            hitokoto.innerText = data.hitokoto
+        })
+        .catch(console.error)
+</script>
+</html>
