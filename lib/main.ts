@@ -108,15 +108,15 @@ function createTask(value: userTask, user: Group | Friend) {
         case "dangerous":
             break;
         case "warning":
-            schedule.scheduleJob(time.subtract(intervalConfig.dangerousInterval, "seconds").toDate(), () => {
+            schedule.scheduleJob(time.subtract(intervalConfig.dangerousInterval, "minutes").toDate(), () => {
                 sendMessage(user);
             });
-            schedule.scheduleJob(time.subtract(intervalConfig.betweenDangerousAndWarning, "seconds").toDate(), () => {
+            schedule.scheduleJob(time.subtract(intervalConfig.betweenDangerousAndWarning, "minutes").toDate(), () => {
                 sendMessage(user);
             });
             break;
         case "safe":
-            schedule.scheduleJob(time.subtract(intervalConfig.waringInterval, "seconds").toDate(), () => {
+            schedule.scheduleJob(time.subtract(intervalConfig.waringInterval, "minutes").toDate(), () => {
                 sendMessage(user);
             });
             break;
@@ -134,7 +134,7 @@ function updateAllTask(user: Group | Friend) {
             writeMapFile(myReceivers);
         }
         //将过期的数据删除
-        if (tasks[i].state === "overdue" && moment().diff(moment(tasks[i].time), "seconds") > 60 * 24) {
+        if (tasks[i].state === "overdue" && moment().diff(moment(tasks[i].time), "minutes") > 60 * 24) {
             tasks.splice(i, 1);
             console.log(myReceivers);
 

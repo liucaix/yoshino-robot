@@ -54,22 +54,22 @@ export function checkMessageIsValid(s: string): boolean {
 }
 //更新任务的状态,若有更新,则返回true,否则返回false.
 export function updateTaskStateChange(task: userTask): boolean {
-    const seconds = moment(task.time).diff(moment(), "seconds");
-    if (task.state === certainState(seconds)) {
+    const minutes = moment(task.time).diff(moment(), "minutes");
+    if (task.state === certainState(minutes)) {
         return false;
     } else {
-        task.state = certainState(seconds);
+        task.state = certainState(minutes);
         return true;
     }
 }
-export function certainState(seconds: number): taskState {
-    if (seconds <= 0) {
+export function certainState(minutes: number): taskState {
+    if (minutes <= 0) {
         return "overdue"
     }
-    if (seconds < intervalConfig.dangerousInterval + 1) {
+    if (minutes < intervalConfig.dangerousInterval + 1) {
         return "dangerous";
     }
-    if (seconds < intervalConfig.waringInterval + 1) {
+    if (minutes < intervalConfig.waringInterval + 1) {
         return "warning";
     }
     return "safe";
